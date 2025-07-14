@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa del Ecuador con Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <h1>Mapa del Ecuador</h1>
+    <div id="map" style="height: 500px;"></div>
+
+    <ul>
+        {% for nombre, capital, area, poblacion in provincias %}
+        <li><strong>{{ nombre }}</strong>: {{ capital }}, {{ area }} km², {{ poblacion }} hab.</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        var map = L.map('map').setView([-1.8312, -78.1834], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+    </script>
+</body>
+</html>
